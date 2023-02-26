@@ -35,9 +35,9 @@ class BPNet(nn.Module):
 
     def forward(self, x):
         x = self.stem(x)
-        print(x.shape)
 
         return {
+            'x': x,
             'profile': self.profile_head(x),
             'total_count': self.total_count_head(x),
         }
@@ -45,8 +45,14 @@ class BPNet(nn.Module):
 if __name__ == '__main__':
     model = BPNet()
     
-    x = torch.randn(1, 4, 1000)
+    x = torch.randn(1, 4, 5000, requires_grad=True)
     out = model(x)
 
-    print(out['profile'].shape)
-    print(out['total_count'].shape)
+    print(out['x'].shape)  # (1, 64, 5000)
+    print(out['profile'].shape)  # (1, 5000, 2)
+    print(out['total_count'].shape)  # (1, 2)
+
+    loss = out['x'][:, 0, 2500].sum()
+    loss.backward()
+
+    print((x.grad != 0.0).sum() / 4)  # (1, 4, 3000)

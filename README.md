@@ -12,7 +12,9 @@ $ pip install bpnet-pytorch
 
 ## TODO
 
-- [ ] Figure out why the receptive field is +-1034bp.
+- [x] Confirm that the receptive field is +-1034bp.
+
+![receptive-field-check](img/receptive_field_check.png)
 
 - [ ] Prepare training data.
 
