@@ -10,3 +10,10 @@ Implementation of BPNet, a base-resolution deep neural network for functional ge
 $ pip install bpnet-pytorch
 ```
 
+## TODO
+
+- [ ] Figure out why the receptive field is +-1034bp.
+
+- [ ] Prepare training data.
+
+- [ ] Train the model and reproduce the performance.
