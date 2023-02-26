@@ -35,6 +35,12 @@ out = model(x)
 
 ![receptive-field-check](img/receptive_field_check.png)
 
+- [ ] Implement early stopping.
+
+- [ ] Implement multinomial negative log-likelihood loss.
+
+- [ ] Modify heads for multi-task (multi-TF) prediction.
+
 - [ ] Prepare training data.
 
 - [ ] Train the model and reproduce the performance.

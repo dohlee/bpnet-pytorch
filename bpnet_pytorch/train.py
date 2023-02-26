@@ -155,9 +155,9 @@ def main():
     parser.add_argument('--val', required=True)
     parser.add_argument('--test', required=True)
     parser.add_argument('--output', '-o', required=True)
-    parser.add_argument('--batch-size', type=int, default=128)
-    parser.add_argument('--epochs', type=int, default=72)
-    parser.add_argument('--lr', type=float, default=0.004)
+    parser.add_argument('--batch-size', type=int, default=256)  # Taken from official implementation.
+    parser.add_argument('--epochs', type=int, default=100)      # Taken from official implementation.
+    parser.add_argument('--lr', type=float, default=0.004)      # Taken from Methods section.
     parser.add_argument('--dropout', type=float, default=0.0)
     parser.add_argument('--seed', type=int, default=42)
     parser.add_argument('--use-wandb', action='store_true', default=False)
@@ -188,7 +188,7 @@ def main():
     model = BPNet()
     model = model.cuda()
 
-    optimizer = optim.Adam(model.parameters(), lr=args.lr)
+    optimizer = optim.Adam(model.parameters(), lr=args.lr)  # Taken from Methods section.
     # TODO: Early stopping
     # scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=1, gamma=0.97)
     criterion = nn.MSELoss()
