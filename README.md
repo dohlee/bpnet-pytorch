@@ -29,15 +29,20 @@ out = model(x)
 ### shape: (1, 2), 2 for +/- strands.
 ```
 
+## Training
+
+### Data
+Training data used to train the original BPNet model can be found [here](https://zenodo.org/record/3371216) (30.8GB).
+
 ## TODO
 
 - [x] Confirm that the receptive field is +-1034bp.
 
 ![receptive-field-check](img/receptive_field_check.png)
 
-- [ ] Implement early stopping.
+- [x] Implement early stopping.
 
-- [ ] Implement multinomial negative log-likelihood loss.
+- [x] Implement multinomial negative log-likelihood loss.
 
 - [ ] Modify heads for multi-task (multi-TF) prediction.
 
