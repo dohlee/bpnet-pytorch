@@ -14,6 +14,7 @@ from torch.distributions.multinomial import Multinomial
 
 from bpnet_pytorch import BPNet
 from bpnet_pytorch.data import BPNetDataset
+from bpnet_pytorch.util import EarlyStopping
 
 def multinomial_nll(probs, target):
     """Multinomial NLL loss."""
@@ -189,7 +190,7 @@ def main():
     model = model.cuda()
 
     optimizer = optim.Adam(model.parameters(), lr=args.lr)  # Taken from Methods section.
-    # TODO: Early stopping
+    early_stopping = EarlyStopping(patience=5)
     # scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=1, gamma=0.97)
     criterion = nn.MSELoss()
 
@@ -228,7 +229,9 @@ def main():
         message += ', '.join([f'{k} {v:.4f}' for k, v in test_metrics.items()])
         print(message)
 
-        scheduler.step()
+        early_stopping.update(val_loss)
+        if early_stopping.stop:
+            break
     
     wandb.log({
         'best_val_loss': best_val_loss,
